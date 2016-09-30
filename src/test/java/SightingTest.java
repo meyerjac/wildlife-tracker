@@ -8,6 +8,20 @@ public class SightingTest {
   // @Rule
   // public DatabaseRule database = new DatabaseRule();
 
+  // @Before
+  // public void setUp() {
+  //   DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/wildlife_tracker_test", null, null);
+  // }
+  // //
+  // // @After
+  // // public void tearDown() {
+  // //   try(Connection con = DB.sql2o.open()) {
+  // //     String sql = "DELETE FROM sightings *;";
+  // //     con.createQuery(sql).executeUpdate();
+  // //   }
+  // // }
+
+
   @Test
   public void sighting_instantiatesCorrectly_true() {
   Sighting newSighting = new Sighting("northern part of cut", "sarah", 1);
@@ -28,61 +42,35 @@ public class SightingTest {
     Sighting sighting = new Sighting("northern part of cut", "sarah", 1);
     assertEquals("sarah", sighting.getRangerName());
   }
-
   @Test
   public void equals_returnsTrueIfAttributesAreTheSame_true() {
     Sighting mySighting = new Sighting("northern part of cut", "sarah", 1);
     Sighting mySightingTwo = new Sighting("northern part of cut", "sarah", 1);
     assertTrue(mySighting.equals(mySightingTwo));
   }
-
   @Test
   public void save_savesSightingToDataBase_true() {
-    Sighting mySighting = new Sighting("souther quarter", "mother", 23);
+    Sighting mySighting = new Sighting("souther quarter", "mother", 1);
     mySighting.save();
-    // assertTrue(Sighting.all().get(0).equals(mySighting));
+    assertEquals("mother", Sighting.all().get(0).getRangerName());
   }
-
-  // @Test
-  // public void save_assignsIdToSighting_true() {
-  //   Sighting mySighting = new Sighting(1,"northern part of cut", "sarah");
-  //   mySighting.save();
-  //   assertTrue(mySighting.getId() > 0);
-  // }
-
-//   @Test
-//   public void find_returnsSightingWithSameId_true() {
-//     Sighting mySighting = new Sighting(1,"northern part of cut", "sarah");
-//     mySighting.save();
-//     Sighting mySightingTwo = new Sighting(1,"northern part of cut", "sarah");
-//     mySightingTwo.save();
-//     assertEquals(Sighting.find(mySightingTwo.getId()), mySightingTwo);
-//   }
-//   @Test
-//   public void delete_deletesTheSighting_true() {
-//   Sighting testSighting = new Sighting(1,"northern part of cut", "sarah");
-//   testSighting.save();
-//   int id = testSighting.getId();
-//   testSighting.delete();
-//   assertEquals(null, Sighting.find(id));
-// }
-// @Test
-// public void update_updatesSighting_true() {
-//   Sighting mySighting = new Sighting(1,"northern part of cut", "sarah");
-//   mySighting.save();
-//   mySighting.update("Jackson", 56, "crew", 1);
-//   assertEquals("Jackson", Sighting.find(mySighting.getId()).getName());
-//   @Test
-
-
-//   public void all_returnsAllInstancesOfSighting_true() {
-//     Sighting mySighting = new Sighting(1,"northern part of cut", "sarah");
-//     Sighting mySightingTwo = new Sighting(1,"northern part of cut", "sarah");
-//     mySighting.save();
-//     mySightingTwo.save();
-//     assertTrue(Sighting.all().get(0).equals(mySighting));
-//     assertTrue(Sighting.all().get(1).equals(mySightingTwo));
-//   }
-// }
-
+  @Test
+  public void find_returnsSightingWithSameAnimalId_true() {
+    Sighting newsighting = new Sighting("northern part of cut", "sarah", 1);
+    newsighting.save();
+    Sighting sighting1= new Sighting("northern part of cut", "sarah", 1);
+    sighting1.save();
+    assertEquals(Sighting.find(newsighting.getAnimalId()), Sighting.find(sighting1.getAnimalId()));
+  }
+  public void all_returnsAllInstancesOfSighting_true() {
+    Sighting mySighting = new Sighting("northern part of cut", "jarah", 1);
+    Sighting mySightingTwo = new Sighting("northern part of cut", "jackson", 1);
+    Sighting mySightingThr = new Sighting("northern part of cut", "sarah", 1);
+    mySighting.save();
+    mySightingTwo.save();
+    mySightingThr.save();
+    assertTrue(Sighting.all().get(0).equals(mySighting));
+    assertTrue(Sighting.all().get(1).equals(mySightingTwo));
+    assertTrue(Sighting.all().get(2).equals(mySightingThr));
+  }
 }
