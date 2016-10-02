@@ -1,0 +1,31 @@
+<div class= "jumbotron">
+  <h1>you saw an Animal? now describe it!</h1>
+
+<form class="animalentry" action="animal-entry/sighting-entry" method="get">
+  <div class= 'form-group'>
+    <select name='type'>
+      <option value="common">common</option>
+      <option value="endangered">endangered</option>
+    </select>
+  </div>
+    <div class="form-group">
+      <label for="name">Species/animal Name</label>
+      <input id="name" name="name" type="text">
+    </div>
+    <div class="form-group">
+      <label for="health">Health of animal (1, 2, 3)
+        <br>
+        1 = very healthy. 2 = okay. 3 = ill.
+        <br> </label>
+      <input id="health" name="health" type="text">
+    </div>
+    <div class="form-group">
+      <label for="lifestage">Life stage (1, 2, 3)
+      <br> 1 = newborn. 2 = juvenile. 3 = adult.
+      <br> </label>
+      <input id="lifestage" name="lifestage" type="text">
+    </div>
+    <button type="submit" class="btn btn-success">Next</button>
+  </form>
+  <a href = "/"><button type="submit" class = "btn btn-danger">Go Back to Home</button></a>
+</div>

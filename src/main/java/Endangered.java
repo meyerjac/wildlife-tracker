@@ -6,14 +6,12 @@ public class Endangered {
   private int id;
   private String name;
   private String health;
-  private int age;
   private String lifeStage;
 
-  public Endangered (String name, String health, int age, String lifeStage) {
+  public Endangered (String name, String health, String lifeStage) {
 
     this.name = name;
     this.health = health;
-    this.age = age;
     this.lifeStage = lifeStage;
   }
 
@@ -29,10 +27,6 @@ public class Endangered {
     return health;
   }
 
-  public int getAge() {
-    return age;
-  }
-
   public String getLifeStage() {
     return lifeStage;
   }
@@ -45,7 +39,6 @@ public class Endangered {
     } else {
       Endangered newEndangered = (Endangered) otherEndangered;
       return this.getLifeStage().equals(newEndangered.getLifeStage()) &&
-             this.getAge() ==(newEndangered.getAge()) &&
              this.getHealth().equals(newEndangered.getHealth()) &&
              this.getName().equals(newEndangered.getName()) &&
              this.getId() == (newEndangered.getId());
@@ -55,11 +48,10 @@ public class Endangered {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO animals (name, health, age, lifestage) VALUES (:name, :health, :age, :lifeStage)";
+      String sql = "INSERT INTO animals (name, health, lifestage) VALUES (:name, :health, :lifeStage)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .addParameter("health", this.health)
-        .addParameter("age", this.age)
         .addParameter("lifeStage", this.lifeStage)
         .executeUpdate()
         .getKey();

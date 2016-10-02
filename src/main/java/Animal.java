@@ -5,8 +5,7 @@ import java.util.List;
 public class Animal {
   private int id;
   private String name;
-  public static int FILLER = 1;
-  public static final String ENDANGERED_ONLY = "not recorded";
+  public static final String ENDANGERED_ONLY = "not recorded for common animals";
 
   public Animal (String name) {
     this.id = id;
@@ -30,12 +29,11 @@ public class Animal {
   }
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO animals (name, health, age, lifestage) VALUES (:name, :health, :age, :lifestage)";
+      String sql = "INSERT INTO animals (name, health, lifestage) VALUES (:name, :health, :lifeStage)";
       this.id = (int) con.createQuery(sql, true)
-        .addParameter("name", ENDANGERED_ONLY )
-        .addParameter("health", ENDANGERED_ONLY )
-        .addParameter("age", FILLER)
-        .addParameter("lifestage",ENDANGERED_ONLY )
+        .addParameter("name", this.name)
+        .addParameter("health", ENDANGERED_ONLY)
+        .addParameter("lifeStage", ENDANGERED_ONLY)
         .executeUpdate()
         .getKey();
     }

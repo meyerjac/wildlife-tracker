@@ -1,9 +1,11 @@
 import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Timestamp;
 
 public class Sighting {
   private int animalId;
+  private Timestamp seenat;
   private String location;
   private String rangerName;
   private int id;
@@ -26,6 +28,9 @@ public class Sighting {
   public int getId() {
     return id;
   }
+  public Timestamp getTime() {
+    return seenat;
+  }
   @Override
   public boolean equals(Object otherSighting) {
    if (!(otherSighting instanceof Sighting)) {
@@ -40,7 +45,7 @@ public class Sighting {
  }
  public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (location, rangername, animalid) VALUES (:location, :rangername, :animalid)";
+      String sql = "INSERT INTO sightings (location, rangername, animalid, seenat) VALUES (:location, :rangername, :animalid, now())";
       con.createQuery(sql)
       .addParameter("location", this.location)
       .addParameter("rangername", this.rangerName)
