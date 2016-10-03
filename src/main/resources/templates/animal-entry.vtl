@@ -1,16 +1,16 @@
 <div class= "jumbotron">
   <h1>you saw an Animal? now describe it!</h1>
 
-<form class="animalentry" action="animal-entry/sighting-entry" method="get">
+<form class="animalentry" action="animal-entry" method="post">
   <div class= 'form-group'>
-    <select name='type'>
+    <select name="type">
       <option value="common">common</option>
       <option value="endangered">endangered</option>
     </select>
   </div>
     <div class="form-group">
       <label for="name">Species/animal Name</label>
-      <input id="name" name="name" type="text">
+      <input id="name" name="name" type="text" required>
     </div>
     <div class="form-group">
       <label for="health">Health of animal (1, 2, 3)
