@@ -5,7 +5,7 @@ import java.util.List;
 public class Animal {
   private int id;
   private String name;
-  public static final String ENDANGERED_ONLY = "not recorded for common animals";
+  public static final String ENDANGERED_ONLY = "N/A for common animals";
 
   public Animal (String name) {
     this.id = id;

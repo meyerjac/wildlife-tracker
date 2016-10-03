@@ -29,16 +29,29 @@ public class App {
       String health= request.queryParams("health");
       String lifeStage=request.queryParams("lifestage");
       String type=request.queryParams("type");
-
       if (type.equals("endangered")) {
+        if (health.equals("1")) {
+            health = "very healthy";
+      } if (health.equals("2")) {
+          health = "okay";
+      } if (health.equals("3")) {
+          health = "ill";
+        } if (lifeStage.equals("1")) {
+            lifeStage = "newborn";
+      } if (lifeStage.equals("2")) {
+          lifeStage = "juvenile";
+      } if (lifeStage.equals("3")) {
+          lifeStage = "adult";
+        }
         Endangered endangered= new Endangered(name, health, lifeStage);
         endangered.save();
       } else {
-        Animal animal= new Animal(name);
-        animal.save();
+        Animal animal1= new Animal(name);
+        animal1.save();
       }
-      model.put("template", "templates/sighting.vtl");
-       response.redirect("/animal-entry/sighting-entry");
+
+      model.put("template", "templates/sighting-entry.vtl");
+      // response.redirect("/animal-entry/sighting-entry");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -53,7 +66,7 @@ public class App {
       String rangername= request.queryParams("rangername");
       String location= request.queryParams("location");
       int animalID = 1;
-      Sighting sighting= new Sighting(rangername, location, animalID);
+      Sighting sighting= new Sighting(location, rangername, animalID);
       sighting.save();
       model.put("template", "templates/success.vtl");
       return new ModelAndView(model, layout);

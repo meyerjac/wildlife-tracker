@@ -3,10 +3,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Endangered {
-  private int id;
-  private String name;
-  private String health;
-  private String lifeStage;
+  public int id;
+  public String name;
+  public String health;
+  public String lifeStage;
+
 
   public Endangered (String name, String health, String lifeStage) {
 
