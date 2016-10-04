@@ -52,4 +52,8 @@ public class EndangeredTest {
     endangered.save();
     assertEquals(true, endangered.getId() > 0);
   }
+  @Test
+  public void find_returnsNullWhenNoEndangeredIsFound_null() {
+    assertTrue(Endangered.find(999) == null);
+  }
 }

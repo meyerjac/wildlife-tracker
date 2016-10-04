@@ -1,39 +1,39 @@
 # _Wildlife_tracker_
 
-#### _this application allows you to track animals, with different rangers, 10/1/16_
+#### _this application allows you to store animals that you have sighted into a database. 10/1/16_
 
 #### By _**Jackson Meyer**_
 
 ## Description
 
-_This application features two forms_
+_This application features two forms, one for entering endangered animals and one for entering the sighting.  The purpose of this application is to track animals out in the field, this simulates a ranger doing field work and making sure that there is a small enough population for endangered animals so that it is okayed that a logging company can clear-cut. Beyond that, it is meant to to show that I have a grasp of advanced java concepts we have learned this last week at Epicodus. We are focused on database entry, inheritance, testing, and pSQL navigation_
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
-
-connect to psql, then run: # CREATE DATABASE wildlife_tracker, to restore table run "$ psql media < media.sql", then run  # \c your_database_name to checkout this database.  then run \dt if you want to see the table restored.  you can creat a "wildlife_tracker_test" to run the tests if you would like.
-
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
+* _first please navigate to my github and git clone the file to your desktop using your console:_ https://github.com/meyerjac/wildlife-tracker_
+* _Please navigate to the file and open in your text editor_
+* _Then, in your console connect to psql, then run: # CREATE DATABASE wildlife_tracker;_
+* _Then, to restore tables, run "$ psql media < media.sql", then run  # \c wildlife_tracker to checkout this database._
+* _then run \dt if you want to see the tables in that database. you can also create a database wildlife_tracker_test and checkout that database to run tests_
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
+_there are a couple bugs, it is my code after all;_
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+_if it is Novemeber 2016, and there are still bugs please email me to let me know! Thanks jackson.meyer7@gmail.com_
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+_This application was written in java, using spark frameworks_
 
 ### License
 
-*{Determine the license under which this application can be used.  See below for more details on licensing.}*
+Copyright (c) <2016> <Jackson Meyer>
 
-Copyright (c) 2016 **_{List of contributors or company name}_**
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

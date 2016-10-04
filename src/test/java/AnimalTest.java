@@ -53,4 +53,9 @@ public class AnimalTest {
     // assertEquals("deer", Animal.all().get(0).getName());
     // assertEquals("elk", Animal.all().get(1).getName());
   }
+  
+  @Test
+  public void find_returnsNullWhenNoAnimalIsFound_null() {
+    assertTrue(Animal.find(999) == null);
+  }
 }

@@ -2,9 +2,9 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal {
-  private int id;
-  private String name;
+public class Animal implements myInterface {
+  public int id;
+  public String name;
   public static final String ENDANGERED_ONLY = "N/A for common animals";
 
   public Animal (String name) {
@@ -27,6 +27,7 @@ public class Animal {
       this.getId() == (animal.getId());
     }
   }
+  @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO animals (name, health, lifestage) VALUES (:name, :health, :lifeStage)";
@@ -45,12 +46,19 @@ public class Animal {
     }
   }
   public static Animal find(int id) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM animals WHERE id=:id";
-      Animal animal = con.createQuery(sql)
-      .addParameter("id", id)
-      .executeAndFetchFirst(Animal.class);
-      return animal;
-    }
+  try {
+    return Animal.get(id - 1);
+  } catch (IndexOutOfBoundsException exception) {
+    return null;
   }
+}
+  // public static Animal find(int id) {
+  //   try(Connection con = DB.sql2o.open()) {
+  //     String sql = "SELECT * FROM animals WHERE id=:id";
+  //     Animal animal = con.createQuery(sql)
+  //     .addParameter("id", id)
+  //     .executeAndFetchFirst(Animal.class);
+  //     return animal;
+  //   }
+  // }
 }

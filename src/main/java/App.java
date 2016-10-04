@@ -13,6 +13,7 @@ public class App {
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
+      model.put("sightings", Sighting.all());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -22,6 +23,22 @@ public class App {
       model.put("template", "templates/animal-entry.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/sighting/:id/hello", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Sighting sighting = Sighting.find(Integer.parseInt(request.params(":id")));
+      model.put("sighting", sighting);
+      model.put("template", "templates/animal-list.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/animal-entry-ranger", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/animal-established.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
 
     post("animal-entry", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();

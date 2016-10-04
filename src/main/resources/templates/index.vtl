@@ -1,11 +1,15 @@
 <h1> Welcome to wildlife tracker<h1>
 
-  <h2> you are here to track animals and log them into our database, please don't mess around, plase just take this task seriously<h2>
+  <h2> you are here to track animals and log them into our database, please don't mess around, plase just take this task seriously. If your name is below please click your name and continue logging animals, if you are a new ranger please select "Begin"<h2>
 
-    <ul><strong>here's how it works:</strong>
-      <li>enter the data of the animal you just saw, this isnt creating an entry in for a 'sighting', but it is logging it into our Animal table</li>
-      <li>then click 'next' to move on and complete the sighting or 'back' to go back a page</li>
-      <li>at the next page you will fill-in your name as the wildlife biologist who will take credit for the sighting and where the animal was seen then hit 'submit' to finalize the sighting, this is when your entry will be timestamped and your name will be credited</li>
-      <li>after you hit submit, you will be taking to a confirmation page and you can then redirect to enter more sightings</li>
+  <p>List of Rangers that have logged data:</p>
+
+  <div class="rangernames">
+  #foreach ($sighting in $sightings)
+    <h3><a id="rangernamelinks" href="/sighting/$sighting.getId()/hello">$sighting.getRangerName()</a></h3>
+  #end
+</div>
+
+
     </ul>
 <a href = "/animal-entry"><button type="submit" class = "btn btn-success">Start!</button></a>

@@ -2,7 +2,7 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Endangered {
+public class Endangered implements myInterface {
   public int id;
   public String name;
   public String health;
@@ -46,7 +46,7 @@ public class Endangered {
 
     }
   }
-
+  @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO animals (name, health, lifestage) VALUES (:name, :health, :lifeStage)";

@@ -59,5 +59,9 @@ public class SightingTest {
     assertEquals("juneau", Sighting.all().get(0).getRangerName());
     assertEquals("juneau", Sighting.all().get(1).getRangerName());
   }
+  @Test
+  public void find_returnsNullWhenNoSightingIsFound_null() {
+    assertTrue(Animal.find(999) == null);
+  }
 
 }
