@@ -13,7 +13,7 @@ _This application features two forms, one for entering endangered animals and on
 * _first please navigate to my github and git clone the file to your desktop using your console:_ https://github.com/meyerjac/wildlife-tracker_
 * _Please navigate to the file and open in your text editor_
 * _Then, in your console connect to psql, then run: # CREATE DATABASE wildlife_tracker;_
-* _Then, to restore tables, run "$ psql media < media.sql", then run  # \c wildlife_tracker to checkout this database._
+* _Then, to restore tables, run "$ psql wildlife_tracker < media.sql", then run  # \c wildlife_tracker to checkout this database._
 * _then run \dt if you want to see the tables in that database. you can also create a database wildlife_tracker_test and checkout that database to run tests_
 
 ## Known Bugs

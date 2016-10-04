@@ -2,7 +2,7 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Endangered implements myInterface {
+public class Endangered {
   public int id;
   public String name;
   public String health;
@@ -46,7 +46,6 @@ public class Endangered implements myInterface {
 
     }
   }
-  @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO animals (name, health, lifestage) VALUES (:name, :health, :lifeStage)";
@@ -62,7 +61,8 @@ public class Endangered implements myInterface {
   public static List<Endangered> all() {
     String sql = "SELECT * FROM animals";
     try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql).executeAndFetch(Endangered.class);
+      return con.createQuery(sql)
+      .executeAndFetch(Endangered.class);
     }
   }
 

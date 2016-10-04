@@ -18,7 +18,6 @@ public class AnimalTest {
     Animal animal = new Animal("deer");
     assertEquals("deer", animal.getName());
   }
-
   @Test
   public void equals_returnsTrueIfNameIsTheSame_true() {
     Animal animal = new Animal("deer");
@@ -35,9 +34,8 @@ public class AnimalTest {
   public void save_savesToDataBase_true() {
     Animal animal = new Animal("elk");
     animal.save();
-    assertEquals(true, animal.getId() > 0);
+    assertEquals("elk", Animal.all().get(0).getName());
   }
-
   @Test
   public void save_assignsIdToAnimal_true() {
     Animal animal = new Animal("deer");
@@ -46,14 +44,13 @@ public class AnimalTest {
   }
   @Test
   public void all_returnsAllInstancesOfAnimal_true() {
-    Animal animal = new Animal("deer");
-    Animal animal1 = new Animal("elk");
+    Animal animal = new Animal("snake");
+    Animal animal1 = new Animal("fish");
     animal.save();
     animal1.save();
-    // assertEquals("deer", Animal.all().get(0).getName());
-    // assertEquals("elk", Animal.all().get(1).getName());
+    assertEquals("snake", Animal.all().get(0).getName());
+    assertEquals("fish", Animal.all().get(1).getName());
   }
-  
   @Test
   public void find_returnsNullWhenNoAnimalIsFound_null() {
     assertTrue(Animal.find(999) == null);

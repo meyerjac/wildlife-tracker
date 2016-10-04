@@ -57,7 +57,8 @@ public class Sighting {
   public static List<Sighting> all() {
    String sql = "SELECT * FROM sightings";
    try(Connection con = DB.sql2o.open()) {
-     return con.createQuery(sql).executeAndFetch(Sighting.class);
+     return con.createQuery(sql)
+     .executeAndFetch(Sighting.class);
     }
   }
   public static Sighting find(int id) {
