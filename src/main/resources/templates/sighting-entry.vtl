@@ -9,7 +9,16 @@
       <label for="location">location of animal, NE quadrant, Finley field ect.</label>
       <input id="location" name="location" type="text">
     </div>
-    <input type="hidden" name="id" value="$animalId" />
+
+    <div class='form-group'>
+      <label for="animaldropdown">List of species sighted. pick the one you saw</label>
+      <select class="form-control" name="animalId">
+        #foreach($animal in $animals)
+            <option value="$animal.getId()">$animal.getName()</option>
+        #end
+      </select>
+    </div>
+
     <button type="submit" class="btn btn-success">Log this entry</button>
   </form>
 </div>

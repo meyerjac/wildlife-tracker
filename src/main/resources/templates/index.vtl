@@ -2,14 +2,25 @@
 
   <h2> you are here to track animals and log them into our database, please don't mess around, plase just take this task seriously. If your name is below please click your name and continue logging animals, if you are a new ranger please select "Begin"<h2>
 
-  <p>List of Rangers that have logged data:</p>
+  <p>List of Animals, and rangers that logged them:</p>
+  <br>
 
   <div class="rangernames">
-  #foreach ($sighting in $sightings)
-    <h3><a id="rangernamelinks" href="/sighting/$sighting.getId()/animals">$sighting.getRangerName()</a></h3>
+
+  #foreach($animal in $animals)
+    $animal.getName()
+      #foreach($sighting in $animal.getSighting())
+      <ul>
+        <li>ranger name: $sighting.getRangerName()</li>
+        <li>location spotted: $sighting.getLocation()</li>
+        <li>time seen: $sighting.getTime()</li>
+      </ul>
+      #end
   #end
 </div>
 
-
     </ul>
-<a href = "/initial_new_animal"><button type="submit" class = "btn btn-success">New Ranger</button></a>
+<a href = "/initial_new_animal" class = "btn btn-success">saw new animal</a>
+#if ($animals.size() > 0)
+  <a href = "/initial_sighting" class = "btn btn-success">New ranger</a>
+#end

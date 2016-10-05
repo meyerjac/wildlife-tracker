@@ -13,7 +13,7 @@ public class App {
 
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      model.put("sightings", Sighting.all());
+      model.put("animals", Animal.all());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -26,7 +26,6 @@ public class App {
 
     post("/animals", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      int id = 0;
       String name= request.queryParams("name");
       String health= request.queryParams("health");
       String lifeStage=request.queryParams("lifestage");
@@ -47,14 +46,12 @@ public class App {
         }
         Endangered test = new Endangered(name, health, lifeStage);
         test.save();
-        id = test.getId();
       } else {
         Animal newAnimal= new Animal(name);
         newAnimal.save();
-        id = newAnimal.getId();
       }
 
-      model.put("animalId", id);
+      model.put("animals", Animal.all());
       model.put("template", "templates/sighting-entry.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -63,19 +60,13 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       String rangername= request.queryParams("rangername");
       String location= request.queryParams("location");
-      int animalId= Integer.parseInt(request.queryParams("id"));
+      int animalId= Integer.parseInt(request.queryParams("animalId"));
       Sighting newSighting = new Sighting(location, rangername, animalId);
       newSighting.save();
       model.put("sightings", Sighting.all());
       model.put("template", "templates/success.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-
-    // get("/initial_new_animal/initial_new_sighting/success", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/animal-entry.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
 
     get("/sighting/:id/animals", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -86,38 +77,12 @@ public class App {
       model.put("template", "templates/animal-list.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-    //
-    // get("/animal-entry-ranger", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/animal-established.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
-    //
-    //
-    //
 
-    // get("/animal-entry/sighting-entry", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/sighting-entry.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
-    //
-    // post("/animal-entry/sighting-entry", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   String rangername= request.queryParams("rangername");
-    //   String location= request.queryParams("location");
-    //   int animalID = 1;
-    //   Sighting sighting= new Sighting(location, rangername, animalID);
-    //   sighting.save();
-    //   model.put("template", "templates/success.vtl");
-    //   return new ModelAndView(model, layout);
-    //   }, new VelocityTemplateEngine());
-    //
-    // get("/success", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/success.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
-
+    get("/initial_sighting", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("animals", Animal.all());
+      model.put("template", "templates/sighting-entry.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
