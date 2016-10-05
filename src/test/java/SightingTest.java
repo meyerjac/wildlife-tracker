@@ -64,4 +64,13 @@ public class SightingTest {
     assertTrue(Animal.find(999) == null);
   }
 
+  @Test
+  public void all_GetAnimals_fromID() {
+  Animal animal1 = new Animal("fish");
+    animal1.save();
+  Sighting newsighting = new Sighting("juneau", "juneau", animal1.getId());
+  newsighting.save();
+  System.out.println(newsighting.getAnimalId());
+  assertEquals(animal1.getName(), newsighting.getAnimals().get(0).getName());
+}
 }

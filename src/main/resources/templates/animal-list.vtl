@@ -1,12 +1,10 @@
-<h1> $sighting.getRangerName() list of spotted animals<h1>
+<h1> $sighting.getRangerName()'s list of spotted animals<h1>
 
   <div class="animals">
-  #foreach ($animal in $animals)
-    <li>$Animal.getName()</li>
+  #foreach ($animal in $sighting.getAnimals())
+    <li>$animal.getName()</li>
   #end
 </div>
-
-
     </ul>
 <a href = "/"><button type="submit" class = "btn btn-success">go home</button></a>
 <a href = "/animal-entry-ranger"><button type="submit" class = "btn btn-success">Add another animal</button></a>

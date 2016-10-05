@@ -44,7 +44,8 @@ public class Animal {
         return con.createQuery(sql)
         .throwOnMappingFailure(false)
         .executeAndFetch(Animal.class);
-}}
+    }
+  }
 
 
   public static Animal find(int id) {
