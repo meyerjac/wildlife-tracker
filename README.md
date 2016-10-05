@@ -14,11 +14,11 @@ _This application features two forms, one for entering endangered animals and on
 * _Please navigate to the file and open in your text editor_
 * _Then, in your console connect to psql, then run: # CREATE DATABASE wildlife_tracker;_
 * _Then, to restore tables, run "$ psql wildlife_tracker < media.sql", then run  # \c wildlife_tracker to checkout this database._
-* _then run \dt if you want to see the tables in that database. you can also create a database wildlife_tracker_test and checkout that database to run tests_
+* _then run \dt if you want to see the tables in that database. you can also create a database wildlife_tracker_test,  and checkout that database to run tests_
 
 ## Known Bugs
 
-_there are a couple bugs, it is my code after all;_
+_wierd appending/list bug that pops up every now and then_
 
 ## Support and contact details
 

@@ -73,13 +73,43 @@ public class SightingTest {
   }
   @Test
   public void Sighting_noRangerNameEntered_nothing(){
-    Sighting testSighting = new Sighting("juneau", " ", 7);
-    assertEquals(testSighting.getRangerName(), " ");
+    Sighting testSighting = new Sighting("juneau", "", 7);
+    assertEquals(testSighting.getRangerName(), "");
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test(expected = IllegalArgumentException.class)
    public void rangername_throwsAnExceptionIfRangerNameIsntEntered_nothing(){
-    Sighting testSighting = new Sighting("juneau", " ", 7);
-    testSighting.noRanger();
+    Sighting testSighting = new Sighting("juneau", "", 7);
+      testSighting.noRanger();
+ }
+ @Test
+ public void rangername_AbleToCatchException_nothing(){
+    Sighting testSighting = new Sighting("juneau", "", 7);{
+      try {
+        testSighting.noRanger();
+      } catch (IllegalArgumentException exception){ }
     }
+    assertTrue(testSighting.getRangerName() == "");
+  }
+  @Test
+  public void Location_nolocationWasEntered(){
+    Sighting sighting = new Sighting("", "juneau", 7);
+    assertEquals(sighting.getLocation(), "");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+   public void
+   Location_nolocationWasEnteredGrabExeption(){
+     Sighting testSighting = new Sighting("", "juneau", 7);
+      testSighting.noLocation();
+ }
+ @Test
+ public void ranger_AbleToCatchExceptionWhenNoLocation_nothing(){
+  Sighting testSighting = new Sighting("", "juneau", 7);{
+      try {
+        testSighting.noLocation();
+      } catch (IllegalArgumentException exception){ }
+    }
+    assertTrue(testSighting.getLocation() == "");
+  }
  }

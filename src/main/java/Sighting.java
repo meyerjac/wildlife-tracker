@@ -80,8 +80,13 @@ public class Sighting {
     }
   }
   public void noRanger(){
-    if (rangerName == " ") {
-      throw new UnsupportedOperationException("You need to enter your name or the name of the ranger that spotted the animals");
+    if (rangerName == "") {
+      throw new IllegalArgumentException("You need to enter your name or the name of the ranger that spotted the animals");
+    }
+  }
+  public void noLocation(){
+    if (location == "") {
+      throw new IllegalArgumentException("You need to enter a valid location, just decribe your surroundings");
     }
   }
 }
