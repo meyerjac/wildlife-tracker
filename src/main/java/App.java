@@ -68,16 +68,6 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/sighting/:id/animals", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      Sighting sighting = Sighting.find(Integer.parseInt(request.params(":id")));
-      model.put("animals", Animal.all());
-      model.put("sighting", sighting);
-      System.out.println(sighting.getAnimals());
-      model.put("template", "templates/animal-list.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
     get("/initial_sighting", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("animals", Animal.all());

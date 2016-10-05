@@ -33,17 +33,17 @@ public class Sighting {
   }
   @Override
   public boolean equals(Object otherSighting) {
-   if (!(otherSighting instanceof Sighting)) {
-     return false;
-   } else {
-     Sighting newSighting = (Sighting) otherSighting;
-     return this.getAnimalId()==(newSighting.getAnimalId()) &&
-            this.getLocation().equals(newSighting.getLocation()) &&
-            this.getRangerName().equals(newSighting.getRangerName()) &&
-            this.getId() == (newSighting.getId());
-   }
- }
- public void save() {
+    if (!(otherSighting instanceof Sighting)) {
+      return false;
+    } else {
+      Sighting newSighting = (Sighting) otherSighting;
+      return this.getAnimalId()==(newSighting.getAnimalId()) &&
+      this.getLocation().equals(newSighting.getLocation()) &&
+      this.getRangerName().equals(newSighting.getRangerName()) &&
+      this.getId() == (newSighting.getId());
+    }
+  }
+  public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO sightings (location, rangername, animalid, seenat) VALUES (:location, :rangername, :animalid, now())";
       con.createQuery(sql)
@@ -55,10 +55,10 @@ public class Sighting {
     }
   }
   public static List<Sighting> all() {
-   String sql = "SELECT * FROM sightings";
-   try(Connection con = DB.sql2o.open()) {
-     return con.createQuery(sql)
-     .executeAndFetch(Sighting.class);
+    String sql = "SELECT * FROM sightings";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .executeAndFetch(Sighting.class);
     }
   }
   public static Sighting find(int id) {
@@ -77,6 +77,11 @@ public class Sighting {
       .addParameter("id", animalId)
       .throwOnMappingFailure(false)
       .executeAndFetch(Animal.class);
+    }
+  }
+  public void noRanger(){
+    if (rangerName == " ") {
+      throw new UnsupportedOperationException("You need to enter your name or the name of the ranger that spotted the animals");
     }
   }
 }

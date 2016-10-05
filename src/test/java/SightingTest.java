@@ -11,7 +11,7 @@ public class SightingTest {
 
   @Test
   public void sighting_instantiatesCorrectly_true() {
-  Sighting newSighting = new Sighting("northern part of cut", "sarah", 1);
+    Sighting newSighting = new Sighting("northern part of cut", "sarah", 1);
     assertEquals(true, newSighting instanceof Sighting);
   }
   @Test
@@ -49,11 +49,10 @@ public class SightingTest {
     sighting1.save();
     assertEquals(Sighting.find(newsighting.getAnimalId()), Sighting.find(sighting1.getAnimalId()));
   }
-
   @Test
   public void all_returnsAllInstancesOfSighting_true() {
-  Sighting newsighting = new Sighting("juneau", "juneau", 6);
-  newsighting.save();
+    Sighting newsighting = new Sighting("juneau", "juneau", 6);
+    newsighting.save();
     Sighting newsighting1 = new Sighting("juneau", "juneau", 7);
     newsighting1.save();
     assertEquals("juneau", Sighting.all().get(0).getRangerName());
@@ -63,14 +62,24 @@ public class SightingTest {
   public void find_returnsNullWhenNoSightingIsFound_null() {
     assertTrue(Animal.find(999) == null);
   }
-
   @Test
   public void all_GetAnimals_fromID() {
-  Animal animal1 = new Animal("fish");
+    Animal animal1 = new Animal("fish");
     animal1.save();
-  Sighting newsighting = new Sighting("juneau", "juneau", animal1.getId());
-  newsighting.save();
-  System.out.println(newsighting.getAnimalId());
-  assertEquals(animal1.getName(), newsighting.getAnimals().get(0).getName());
-}
-}
+    Sighting newsighting = new Sighting("juneau", "juneau", animal1.getId());
+    newsighting.save();
+    System.out.println(newsighting.getAnimalId());
+    assertEquals(animal1.getName(), newsighting.getAnimals().get(0).getName());
+  }
+  @Test
+  public void Sighting_noRangerNameEntered_nothing(){
+    Sighting testSighting = new Sighting("juneau", " ", 7);
+    assertEquals(testSighting.getRangerName(), " ");
+  }
+
+  @Test(expected = UnsupportedOperationException.class)
+   public void rangername_throwsAnExceptionIfRangerNameIsntEntered_nothing(){
+    Sighting testSighting = new Sighting("juneau", " ", 7);
+    testSighting.noRanger();
+    }
+ }

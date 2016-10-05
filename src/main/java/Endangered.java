@@ -2,7 +2,7 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Endangered {
+public class Endangered implements myInterface {
   public int id;
   public String name;
   public String health;
@@ -34,11 +34,11 @@ public class Endangered {
 
 
   @Override
-  public boolean equals(Object otherEndangered) {
-    if (!(otherEndangered instanceof Endangered)) {
+  public boolean equals(Object otherObject) {
+    if (!(otherObject instanceof Endangered)) {
       return false;
     } else {
-      Endangered newEndangered = (Endangered) otherEndangered;
+      Endangered newEndangered = (Endangered) otherObject;
       return this.getLifeStage().equals(newEndangered.getLifeStage()) &&
              this.getHealth().equals(newEndangered.getHealth()) &&
              this.getName().equals(newEndangered.getName()) &&
@@ -46,6 +46,7 @@ public class Endangered {
 
     }
   }
+  @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO animals (name, health, lifestage) VALUES (:name, :health, :lifeStage)";
